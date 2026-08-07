@@ -18,7 +18,7 @@ public class HttpTriggerTest1
     public IActionResult Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
-        // test comment
+        // test comment #2
         return new OkObjectResult("Welcome to Azure Functions!");
     }
 }
