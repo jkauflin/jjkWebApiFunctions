@@ -7,9 +7,6 @@ using Microsoft.Extensions.Hosting;
 using OpenTelemetry;
 
 var builder = FunctionsApplication.CreateBuilder(args);
-
-builder.ConfigureFunctionsWebApplication();
-
 if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("APPLICATIONINSIGHTS_CONNECTION_STRING")))
 {
     builder.Services.AddOpenTelemetry()
@@ -18,3 +15,4 @@ if (!string.IsNullOrEmpty(Environment.GetEnvironmentVariable("APPLICATIONINSIGHT
 }
 
 builder.Build().Run();
+
