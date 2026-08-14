@@ -411,7 +411,7 @@ namespace jjkWebApiFunctions
                 MediaInfoColl mediaInfoColl = new MediaInfoColl
                 {
                     MediaInfoList = mediaInfoList,
-                    isAdmin = authCheck.UserAuthorizedForRole(req, userAdminRole, out string userName)
+                    //isAdmin = authCheck.UserAuthorizedForRole(req, userAdminRole, out string userName)
                 };
                 return await CreateJsonResponse(req, HttpStatusCode.OK, mediaInfoColl);
             }
@@ -558,6 +558,14 @@ namespace jjkWebApiFunctions
             return await CreateJsonResponse(req, HttpStatusCode.OK, responseMessage);
         }
 
+        [Function("CheckAdminRole")]
+        public async Task<HttpResponseData> CheckAdminRole(
+        [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequestData req)
+        {
+            bool isAdmin = false;
+            isAdmin = authCheck.UserAuthorizedForRole(req, userAdminRole, out string userName);
+            return await CreateJsonResponse(req, HttpStatusCode.OK, isAdmin);
+        }
 
         [Function("GetPeopleList")]
         public async Task<HttpResponseData> GetPeopleList(
@@ -606,7 +614,6 @@ namespace jjkWebApiFunctions
 
             return await CreateJsonResponse(req, HttpStatusCode.OK, peopleList);
         }
-
 
         [Function("GetGenvConfig")]
         public async Task<HttpResponseData> GetGenvConfig(

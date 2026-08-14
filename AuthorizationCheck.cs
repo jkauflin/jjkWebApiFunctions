@@ -170,16 +170,17 @@ public class AuthorizationCheck
         */
 
         var bearer = authHeaders.FirstOrDefault();
-        log.LogWarning("Authorization header = {Header}", bearer);
+        //log.LogWarning("Authorization header = {Header}", bearer);
         if (string.IsNullOrWhiteSpace(bearer) || !bearer.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
         {
             return false;
         }
 
         token = bearer["Bearer ".Length..];
+        /*
         log.LogWarning("Bearer starts with: {Token}",
             bearer.Length > 40 ? bearer.Substring(0,40) : bearer);
-            
+        */  
         return !string.IsNullOrWhiteSpace(token);
     }
 
